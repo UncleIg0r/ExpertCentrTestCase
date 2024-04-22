@@ -6,21 +6,22 @@ namespace ExpertCentrTestCase.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController( ApplicationContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            List<PriceList> priceList = _context.PriceLists.ToList();
+            return View(priceList);
         }
-
-        public IActionResult Privacy()
+        
+        public IActionResult CreatePriceList()
         {
-            return View();
+            return View(new PriceList());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

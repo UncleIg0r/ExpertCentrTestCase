@@ -1,7 +1,13 @@
+using ExpertCentrTestCase.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+// Подключаю БД
+var connectionString = builder.Configuration.GetConnectionString("Default");
+builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
 
 var app = builder.Build();
 

@@ -1,8 +1,28 @@
-﻿@{
+﻿@model List<PriceList>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<form asp-controller="Home" asp-action="CreatePriceList">
+    <h1>Прайс-листы</h1>
+    <button type="submit" class="btn btn-primary" >Создать</button>
+    <br />
+    <div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">№</th>
+                    <th scope="col">Название</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @foreach (var item in Model) {
+                    <tr>
+                        <th scope="row">@item.Id</th>
+                        <td href="">@item.Name</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</form>

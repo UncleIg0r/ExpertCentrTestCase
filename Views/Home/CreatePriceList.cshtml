@@ -1,0 +1,19 @@
+﻿@model PriceList
+@{
+    ViewData["Title"] = "Home Page";
+}
+<form>
+    <h1>Создание Прайс-листа</h1><br />
+    <button class="btn btn-success">Продолжить</button>
+    <button class="btn btn-danger" asp-action="Index">Отмена</button>
+    <div>
+        <label>Название*</label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name" class="span-danger"></span>
+    </div>
+
+</form>
+
+<script lang="ts">
+
+</script>
