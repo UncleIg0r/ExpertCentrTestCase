@@ -1,4 +1,5 @@
-﻿@model PriceList
+﻿@using ExpertCentrTestCase.Core.Models
+@model PriceList
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -14,6 +15,11 @@
 
 </form>
 
-<script lang="ts">
+@section Scripts {
+    <script>
+        $.ajax({
+            type: "GET",
 
-</script>
+        })
+    </script>
+}

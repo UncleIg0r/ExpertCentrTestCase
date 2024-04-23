@@ -1,3 +1,5 @@
+using ExpertCentrTestCase.Core.Models;
+using ExpertCentrTestCase.DataAccess;
 using ExpertCentrTestCase.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -6,23 +8,25 @@ namespace ExpertCentrTestCase.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ApplicationContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController( ApplicationContext context)
+        public HomeController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            List<PriceList> priceList = _context.PriceLists.ToList();
+            List<PriceList> priceList = new();
             return View(priceList);
         }
         
-        public IActionResult CreatePriceList()
+        public IActionResult CreatePriceListPage()
         {
-            return View(new PriceList());
+            return View();//new PriceListEntity()
         }
+        /*[HttpGet]
+        public IActionResult<>*/
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

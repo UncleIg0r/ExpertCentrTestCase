@@ -1,4 +1,6 @@
-using ExpertCentrTestCase.Models;
+using ExpertCentrTestCase.Core.Interfaces;
+using ExpertCentrTestCase.DataAccess;
+using ExpertCentrTestCase.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +9,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 // Подключаю БД
 var connectionString = builder.Configuration.GetConnectionString("Default");
-builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<IColumnRepository, ColumnRepository>();
+builder.Services.AddScoped<ICustomValueRepository, CustomValueRepository>();
+builder.Services.AddScoped<IPriceListRepository, PriceListRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+
 
 var app = builder.Build();
 
