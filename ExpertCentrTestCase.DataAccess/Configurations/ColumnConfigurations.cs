@@ -8,7 +8,7 @@ public class ColumnConfigurations : IEntityTypeConfiguration<ColumnEntity>
     public void Configure(EntityTypeBuilder<ColumnEntity> builder)
     {
         builder.HasKey(c => c.Id);
-        builder.Property<Guid>("Id")
+        builder.Property<int>("Id")
             .ValueGeneratedOnAdd();
 
         builder.HasMany(c => c.CustomValues)

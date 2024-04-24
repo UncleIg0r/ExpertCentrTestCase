@@ -8,7 +8,7 @@ public class CustomValueConfigurations : IEntityTypeConfiguration<CustomValueEnt
     public void Configure(EntityTypeBuilder<CustomValueEntity> builder)
     {
         builder.HasKey(c => c.Id);
-        builder.Property<Guid>("Id")
+        builder.Property<int>("Id")
             .ValueGeneratedOnAdd();
 
         builder.HasOne(cc => cc.Column)

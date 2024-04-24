@@ -8,7 +8,7 @@ public class PriceListConfigurations : IEntityTypeConfiguration<PriceListEntity>
     public void Configure(EntityTypeBuilder<PriceListEntity> builder)
     {
         builder.HasKey(pl => pl.Id);
-        builder.Property<Guid>("Id")
+        builder.Property<int>("Id")
             .ValueGeneratedOnAdd();
 
         builder.HasMany(pl => pl.Columns)

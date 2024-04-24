@@ -14,14 +14,14 @@ public class ColumnRepository : IColumnRepository
     {
         _context = context;
     }
-    public async Task<Column?> Get(Guid id)
+    public async Task<Column?> Get(int id)
     {
         ColumnEntity? columnEntity = await _context.Columns.AsNoTracking()
             .FirstOrDefaultAsync(c => c.Id == id) ?? null;
         if (columnEntity == null) return null;
         return columnEntity.MapToColumn();
     }
-    public async Task<Guid> Create(Column column)
+    public async Task<int> Create(Column column)
     {
         await _context.AddAsync(column.MapToColumnEntity());
         await _context.SaveChangesAsync();

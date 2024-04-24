@@ -8,7 +8,7 @@ public class ProductConfigurations : IEntityTypeConfiguration<ProductEntity>
     public void Configure(EntityTypeBuilder<ProductEntity> builder)
     {
         builder.HasKey(c => c.Id);
-        builder.Property<Guid>("Id")
+        builder.Property<int>("Id")
             .ValueGeneratedOnAdd();
 
         builder.HasMany(p => p.CustomValues)

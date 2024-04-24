@@ -4,6 +4,6 @@ namespace ExpertCentrTestCase.Core.Interfaces;
 
 public interface IColumnRepository
 {
-    Task<Guid> Create(Column column);
-    Task<Column?> Get(Guid id);
+    Task<int> Create(Column column);
+    Task<Column?> Get(int id);
 }

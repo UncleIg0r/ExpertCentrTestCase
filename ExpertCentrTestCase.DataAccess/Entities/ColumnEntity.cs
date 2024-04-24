@@ -6,7 +6,7 @@ namespace ExpertCentrTestCase.DataAccess.Entities;
 public class ColumnEntity
 {
     [Key]
-    public Guid Id { get; set; }
+    public int Id { get; set; }
     public ColumnType ColType { get; set; }
     public string ColName { get; set; }
     public List<CustomValueEntity> CustomValues { get; set; } = new();

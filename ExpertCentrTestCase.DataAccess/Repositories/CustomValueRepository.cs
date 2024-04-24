@@ -13,21 +13,21 @@ public class CustomValueRepository : ICustomValueRepository
     {
         _context = context;
     }
-    public async Task<CustomValue?> GetOne(Guid id)
+    public async Task<CustomValue?> GetOne(int id)
     {
         CustomValueEntity? customValueEntity = await _context.CustomValues.AsNoTracking()
             .FirstOrDefaultAsync(cv => cv.Id == id) ?? null;
         if (customValueEntity == null) return null;
         return customValueEntity.MapToCustomValue();
     }
-    public async Task<List<CustomValue>> GetAllByProduct(Guid productId)
+    public async Task<List<CustomValue>> GetAllByProduct(int productId)
     {
         List<CustomValueEntity> customValues = await _context.CustomValues.AsNoTracking()
             .Where(cv => cv.ProductId == productId)
             .OrderBy(cv => cv.ColumnId).ToListAsync();
         return customValues.Select(cv => cv.MapToCustomValue()).ToList();
     }
-    public async Task<List<Guid>> DeleteAllByProduct(Guid productId)
+    public async Task<List<int>> DeleteAllByProduct(int productId)
     {
         var toDel = await _context.CustomValues.AsNoTracking()
             .Where(cv => cv.ProductId == productId).ToArrayAsync();
@@ -35,7 +35,7 @@ public class CustomValueRepository : ICustomValueRepository
         await _context.SaveChangesAsync();
         return toDel.Select(d => d.Id).ToList();
     }
-    public async Task<List<Guid>> Create(List<CustomValue> customValues)
+    public async Task<List<int>> Create(List<CustomValue> customValues)
     {
         await _context.CustomValues.AddRangeAsync(customValues
             .Select(cv => cv.MapToCustomValueEntity())

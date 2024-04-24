@@ -4,8 +4,8 @@ namespace ExpertCentrTestCase.Core.Interfaces;
 
 public interface IPriceListRepository
 {
-    Task<Guid> Create(PriceList priceList);
-    Task<Guid> Delete(Guid id);
+    Task<int> Create(PriceList priceList);
+    Task<int?> Delete(int id);
     Task<List<PriceList>> GetAll();
-    Task<PriceList?> GetOne(Guid id);
+    Task<PriceList?> GetOne(int id);
 }

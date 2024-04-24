@@ -14,7 +14,7 @@ public class ProductRepository : IProductRepository
     {
         _context = context;
     }
-    public async Task<List<Product>> GetByPriceList(Guid priceListId)
+    public async Task<List<Product>> GetByPriceList(int priceListId)
     {
         List<ProductEntity> productEntities = await _context.Products.AsNoTracking()
             .Where(p => p.PriceListId == priceListId)
@@ -22,7 +22,7 @@ public class ProductRepository : IProductRepository
             .OrderBy(p => p.Name).ToListAsync();
         return productEntities.Select(p => p.MapToProduct()).ToList();
     }
-    public async Task<Product?> GetOne(Guid id)
+    public async Task<Product?> GetOne(int id)
     {
         ProductEntity? productEntity = await _context.Products.AsNoTracking()
             .Include(p => p.CustomValues)
@@ -30,18 +30,18 @@ public class ProductRepository : IProductRepository
         if (productEntity == null) return null;
         return productEntity.MapToProduct();
     }
-    public async Task<Guid> Create(Product product)
+    public async Task<int> Create(Product product)
     {
         await _context.Products.AddAsync(product.MapToProductEntity());
         await _context.SaveChangesAsync();
         return product.Id;
     }
-    public async Task<Guid> Delete(Guid id)
+    public async Task<int?> Delete(int id)
     {
         ProductEntity? productEntity = await _context.Products.AsNoTracking()
             .Include(p => p.CustomValues)
             .FirstOrDefaultAsync(p => p.Id == id) ?? null;
-        if (productEntity == null) return Guid.Empty;
+        if (productEntity == null) return null;
         _context.Products.Remove(productEntity);
         await _context.SaveChangesAsync();
         return productEntity.Id;

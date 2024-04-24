@@ -4,8 +4,8 @@ namespace ExpertCentrTestCase.Core.Interfaces;
 
 public interface ICustomValueRepository
 {
-    Task<List<Guid>> Create(List<CustomValue> customValues);
-    Task<List<Guid>> DeleteAllByProduct(Guid productId);
-    Task<List<CustomValue>> GetAllByProduct(Guid productId);
-    Task<CustomValue?> GetOne(Guid id);
+    Task<List<int>> Create(List<CustomValue> customValues);
+    Task<List<int>> DeleteAllByProduct(int productId);
+    Task<List<CustomValue>> GetAllByProduct(int productId);
+    Task<CustomValue?> GetOne(int id);
 }
